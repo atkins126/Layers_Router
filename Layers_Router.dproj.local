@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2021/06/29 08:56:50.000.921,C:\Users\User\Downloads\Nova pasta\Layers_Router\Router4Delphi.dproj=C:\Users\User\Downloads\Nova pasta\Layers_Router\Layers_Router.dproj</Transaction>
+    <Transaction>2021/06/29 09:00:24.716,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\JK.EventBus.Subscribers.pas</Transaction>
+    <Transaction>2021/06/29 09:00:24.716,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\JK.EventBus.Core.pas</Transaction>
+    <Transaction>2021/06/29 09:00:24.731,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\JK.ObjectsMappers.pas</Transaction>
+    <Transaction>2021/06/29 09:00:24.747,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\JK.RTTIUtils.pas</Transaction>
+    <Transaction>2021/06/29 09:00:24.747,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\JK.TypedList.pas</Transaction>
+    <Transaction>2021/06/29 09:07:11.656,=vcl.dcp</Transaction>
+    <Transaction>2021/06/29 09:10:29.756,=soaprtl.dcp</Transaction>
+    <Transaction>2021/06/29 09:11:19.903,=fmx.dcp</Transaction>
+    <Transaction>2021/06/29 09:11:54.341,=FireDAC.dcp</Transaction>
+    <Transaction>2021/06/29 09:11:54.345,=FireDACCommon.dcp</Transaction>
+    <Transaction>2021/06/29 09:13:33.724,=dbrtl.dcp</Transaction>
+    <Transaction>2021/06/29 09:13:33.728,=DbxCommonDriver.dcp</Transaction>
+    <Transaction>2021/06/29 09:13:33.731,=FireDACCommonDriver.dcp</Transaction>
+    <Transaction>2021/06/29 09:14:22.908,=rtl.dcp</Transaction>
+    <Transaction>2021/06/29 09:14:22.912,=xmlrtl.dcp</Transaction>
+    <Transaction>2021/06/29 09:29:32.346,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\Layers_Router.Helper.pas</Transaction>
+    <Transaction>2021/06/29 09:29:33.688,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\Layers_Router.Interfaces.pas</Transaction>
+    <Transaction>2021/06/29 09:29:34.468,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\Layers_Router.Link.pas</Transaction>
+    <Transaction>2021/06/29 09:29:35.115,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\Layers_Router.pas</Transaction>
+    <Transaction>2021/06/29 09:29:35.127,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\Layers_Router.Propersys.pas</Transaction>
+    <Transaction>2021/06/29 09:29:36.082,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\Layers_Router.Render.pas</Transaction>
+    <Transaction>2021/06/29 09:29:36.093,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\Layers_Router.Sidebars.pas</Transaction>
+    <Transaction>2021/06/29 09:29:36.666,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\Layers_Router.Story.pas</Transaction>
+    <Transaction>2021/06/29 09:29:36.678,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\Layers_Router.Switch.pas</Transaction>
+    <Transaction>2021/06/29 09:29:36.683,=C:\Users\User\Downloads\Nova pasta\Layers_Router\src\Layers_Router.Utils.pas</Transaction>
+  </Transactions>
+</BorlandProject>
