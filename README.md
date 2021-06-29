@@ -1,4 +1,4 @@
-<br>
+
 
 #  Layers_Router - Library 
 
@@ -14,7 +14,7 @@ Basta registrar no Library Path do seu Delphi o caminho da pasta SRC da Bibliote
 
 Para utilizar o  Layers_Router - Library para criar suas rotas, você deve realizar a uses do Layers_Router.
 
-#### Observação:
+### Observação:
 
 Dentro da pasta src contém o Layers_Router.inc, esse arquivo possui a diretiva de compilação para o Firemonkey, com essa diretiva comentada o Framework terá suporte a VCL, e ao descomentar você terá suporte ao FMX.
 
@@ -24,7 +24,7 @@ Para que o sistema  de Rotas funcione você deve criar um novo formulário FMX o
 
 Toda a construção das telas baseadas em rotas utilizar TLayout e TPanel para embedar as chamadas das telas, dessa forma é preciso que sua nova tela tenha um TLayout ou um TPanel principal e todos os demais componentes devem ser incluídos dentro deste Layout ou Panel.
 
-#### Implementação em VCL
+### Implementação em VCL
 
 A Implementação da Interface ILayers_RouterComponent requer a declaração de Três [3] métodos ( RendTheForm, RendTheFrame e UnRender ), o RendTheForm ou RendTheFrame é chamado sempre que uma rota aciona a tela, e o UnRender sempre que ela saí de exibição. 
 
@@ -33,137 +33,132 @@ A Implementação da Interface ILayers_RouterComponent requer a declaração de 
 >  RendTheFrame: so é chamado quando sua Classe realmente for um Frames da classe TFrame;
 ```  
 
-#### Exemplo em VCL
+### Exemplo em VCL
 
 Crie um Novo Formulario na sua Aplicação, inclua nele um Panel alinhado AlClient e implemente os métodos como abaixo.
 
 Lembre-se esta tela é que vai ser renderizado na qual a tela for Principal.
 
 ```delphi
+unit Rendering_Canvas;
 
-  unit Rendering_Canvas;
+interface
 
-  interface
+uses
+  System.SysUtils, 
+  System.Types, 
+  System.UITypes, 
+  System.Classes, 
+  System.Variants,
 
-  uses
-    System.SysUtils, 
-    System.Types, 
-    System.UITypes, 
-    System.Classes, 
-    System.Variants,
+  // Layers_Router Library
+  Layers_Router.Interfaces;
 
-    // Layers_Router Library
-    Layers_Router.Interfaces;
-
-  type
-    TRendering_Canvas = class(TForm, ILayers_RouterComponent)
-    private
-      { Private declarations }
-    public
-      { Public declarations }
-      function RendTheForm : TForm;
-      function RendTheFrame : TFrame;
-      procedure UnRender;
-    end;
-
-  var
-    Rendering_Canvas : TRendering_Canvas;
-
-  {$R *.dfm}
-
-  { TRendering_Canvas }
-
-  function TRendering_Canvas.RendTheForm: TForm;
-  begin
-    Result := Self; // Só da Result.Self, se a sua tela for um TForm;
+type
+  TRendering_Canvas = class(TForm, ILayers_RouterComponent)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function RendTheForm : TForm;
+    function RendTheFrame : TFrame;
+    procedure UnRender;
   end;
 
-  function TRendering_Canvas.RendTheFrame: TFrame;
-  begin
-    Result := Self; // Só da Result.Self, se a sua tela for um TFrame;
-  end;
+var
+  Rendering_Canvas : TRendering_Canvas;
 
-  procedure TRendering_Canvas.UnRender;
-  begin
+{$R *.dfm}
 
-  end;
+{ TRendering_Canvas }
 
-  end.
+function TRendering_Canvas.RendTheForm: TForm;
+begin
+  Result := Self; // Só da Result.Self, se a sua tela for um TForm;
+end;
 
+function TRendering_Canvas.RendTheFrame: TFrame;
+begin
+  Result := Self; // Só da Result.Self, se a sua tela for um TFrame;
+end;
+
+procedure TRendering_Canvas.UnRender;
+begin
+
+end;
+
+end.
 ```
 
 Perceba que no método RendTheForm ou RendTheFrame nós definimos o Result como Self, isso é necessário pois ele precisa de um retorno TForm ou TFrame, será embedado sempre que a rota for acionada. 
 
-#### Implementação em FMX
+### Implementação em FMX
 
 A Implementação da Interface ILayers_RouterComponent requer a declaração de dois [2] métodos ( Render e UnRender ), o Render é chamado sempre que uma rota aciona a tela, e o UnRender sempre que ela saí de exibição. 
 
 Abaixo o Código de uma tela simples implementando a interface ILayers_RouterComponent e pronta para ser utilizada.
 
-#### Exemplo em FMX
+### Exemplo em FMX
 
 Crie um Novo Formulario na sua Aplicação, inclua nele um Layout alinhado AlClient e implemente os métodos como abaixo.
 
 Lembre-se esta tela é que vai ser renderizado na qual a tela for Principal.
 
 ```delphi
+unit Rendering_Canvas;
 
-  unit Rendering_Canvas;
+interface
 
-  interface
+uses
+  System.SysUtils, 
+  System.Types, 
+  System.UITypes, 
+  System.Classes, 
+  System.Variants,
+  FMX.Types, 
+  FMX.Controls, 
+  FMX.Forms, 
+  FMX.Graphics, 
+  FMX.Dialogs,
+  Layers_Router.Interfaces;
 
-  uses
-    System.SysUtils, 
-    System.Types, 
-    System.UITypes, 
-    System.Classes, 
-    System.Variants,
-    FMX.Types, 
-    FMX.Controls, 
-    FMX.Forms, 
-    FMX.Graphics, 
-    FMX.Dialogs,
-    Layers_Router.Interfaces;
-
-  type
-    TRendering_Canvas = class(TForm, ILayers_RouterComponent)
-      Layout1: TLayout;
-    private
-      { Private declarations }
-    public
-      { Public declarations }
-      function Render : TFMXObject;
-      procedure UnRender;
-    end;
-
-  var
-    Rendering_Canvas : TRendering_Canvas;
-
-  implementation
-
-  {$R *.fmx}
-
-  { TRendering_Canvas }
-
-  function TRendering_Canvas.Render: TFMXObject;
-  begin
-    Result := Layout1;
+type
+  TRendering_Canvas = class(TForm, ILayers_RouterComponent)
+    Layout1: TLayout;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function Render : TFMXObject;
+    procedure UnRender;
   end;
 
-  procedure TRendering_Canvas.UnRender;
-  begin
+var
+  Rendering_Canvas : TRendering_Canvas;
 
-  end;
+implementation
 
-  end.
+{$R *.fmx}
 
+{ TRendering_Canvas }
+
+function TRendering_Canvas.Render: TFMXObject;
+begin
+  Result := Layout1;
+end;
+
+procedure TRendering_Canvas.UnRender;
+begin
+
+end;
+
+end.
 ```
 
 Perceba que no método Render nós definimos como Result o Layout1, isso é necessário pois esse layout será embedado sempre que a rota for acionada.
 
 ## Registrando a Rota para a Tela
 
-<br>
 
 Agora que já temos uma tela pronta para ser registrada vamos ao processo que deixará a nossa tela pronta para ser acionada a qualquer momento.
 
