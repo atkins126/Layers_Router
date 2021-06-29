@@ -1,5 +1,5 @@
 #  Layers_Router - Library 
-Framework para Criação de Camadas de Rotas de Telas para FMX(Test) e VCL
+Framework para criação de Camadas de Rotas de Telas para FMX(Test) e VCL
 
 O  Layers_Router - Library tem o objetivo de facilitar a chamada de telas sendo TForm ou TFrame e embed de Layouts em aplicações FMX, e Panels em aplicações VCL, reduzindo o acoplamento das telas de dando mais dinâmismo e práticidade na construção de interfaces ricas em Delphi
 
@@ -15,16 +15,84 @@ Para utilizar o  Layers_Router - Library para criar suas rotas, você deve reali
 
 Dentro da pasta src contém o Layers_Router.inc, esse arquivo possui a diretiva de compilação para o Firemonkey, com essa diretiva comentada o Framework terá suporte a VCL, e ao descomentar você terá suporte ao FMX.
 
-## Criação de uma Tela para Roteamento
+## Criação de uma Tela para Rotas
 
 Para que o sistema  de Rotas funcione você deve criar um novo formulário FMX ou VCL e Implementar a Interface ILayers_RouterComponent ela pertence a unit Layers_Router.Interfaces portanto a mesma deve ser incluida nas suas Units.
 
-Toda a construção das telas baseadas em rotas utilizar TLayouts e TPanels para embedar as chamadas das telas, dessa forma é preciso que sua nova tela tenha um TLayout ou um TPanel principal e todos os demais componentes devem ser incluídos dentro desse layout ou panel.
+Toda a construção das telas baseadas em rotas utilizar TLayout e TPanel para embedar as chamadas das telas, dessa forma é preciso que sua nova tela tenha um TLayout ou um TPanel principal e todos os demais componentes devem ser incluídos dentro deste Layout ou Panel.
 
-A Implementação da Interface ILayers_RouterComponent requer a declaração de Três[3] métodos ( RendTheForm, RendTheFrame e UnRender ), o RendTheForm ou RendTheFrame é chamado sempre que uma rota aciona a tela, e o UnRender sempre que ela saí de exibição. 
+#### Implementação em VCL
 
+A Implementação da Interface ILayers_RouterComponent requer a declaração de Três [3] métodos ( RendTheForm, RendTheFrame e UnRender ), o RendTheForm ou RendTheFrame é chamado sempre que uma rota aciona a tela, e o UnRender sempre que ela saí de exibição. 
+
+```
   RendTheForm: so é chamado quando sua Classe realmente for um Form da classe TForm;
-  RendTheFrame: so é chamado quando sua Classe realment for um Frames da classe TFrame;
+  RendTheFrame: so é chamado quando sua Classe realmente for um Frames da classe TFrame;
+```  
+
+#### Exemplo em VCL
+
+Crie um Novo Formulario na sua Aplicação, inclua nele um Panel alinhado AlClient e implemente os métodos como abaixo.
+
+Lembre-se esta tela é que vai ser renderizado na qual proximo tela Standards.
+
+
+```delphi
+unit Rendering_Canvas;
+
+interface
+
+uses
+  System.SysUtils, 
+  System.Types, 
+  System.UITypes, 
+  System.Classes, 
+  System.Variants,
+
+  // Layers_Router Library
+  Layers_Router.Interfaces;
+
+type
+  TRendering_Canvas = class(TForm, ILayers_RouterComponent)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function RendTheForm : TForm;
+    function RendTheFrame : TFrame;
+    procedure UnRender;
+  end;
+
+var
+  Rendering_Canvas : TRendering_Canvas;
+
+{$R *.dfm}
+
+{ TRendering_Canvas }
+
+function TRendering_Canvas.RendTheForm: TForm;
+begin
+  Result := Self; // Só da Result.Self, se a sua tela for um TForm;
+end;
+
+function TRendering_Canvas.RendTheFrame: TFrame;
+begin
+  Result := Self; // Só da Result.Self, se a sua tela for um TFrame;
+end;
+
+procedure TRendering_Canvas.UnRender;
+begin
+
+end;
+
+end.
+```
+
+Perceba que no método RendTheForm ou RendTheFrame nós definimos o Result como Self, isso é necessário pois ele precisa de um retorno TForm ou TFrame, será embedado sempre que a rota for acionada. 
+
+#### Implementação em FMX
+
+A Implementação da Interface ILayers_RouterComponent requer a declaração de dois [2] métodos ( Render e UnRender ), o Render é chamado sempre que uma rota aciona a tela, e o UnRender sempre que ela saí de exibição. 
 
 Abaixo o Código de uma tela simples implementando a interface ILayers_RouterComponent e pronta para ser utilizada.
 
@@ -32,9 +100,9 @@ Abaixo o Código de uma tela simples implementando a interface ILayers_RouterCom
 
 Crie um Novo Formulario na sua Aplicação, inclua nele um Layout alinhado AlClient e implemente os métodos como abaixo.
 
-```delphi
 
-unit PrimeiraTela;
+```delphi
+unit Rendering_Canvas;
 
 interface
 
@@ -52,7 +120,7 @@ uses
   Layers_Router.Interfaces;
 
 type
-  TPrimeiraTela = class(TForm, ILayers_RouterComponent)
+  TRendering_Canvas = class(TForm, ILayers_RouterComponent)
     Layout1: TLayout;
   private
     { Private declarations }
@@ -63,20 +131,20 @@ type
   end;
 
 var
-  PrimeiraTela: TPrimeiraTela;
+  Rendering_Canvas : TRendering_Canvas;
 
 implementation
 
 {$R *.fmx}
 
-{ TForm3 }
+{ TRendering_Canvas }
 
-function TPrimeiraTela.Render: TFMXObject;
+function TRendering_Canvas.Render: TFMXObject;
 begin
   Result := Layout1;
 end;
 
-procedure TPrimeiraTela.UnRender;
+procedure TRendering_Canvas.UnRender;
 begin
 
 end;
