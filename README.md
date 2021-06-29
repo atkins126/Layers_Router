@@ -1,6 +1,6 @@
+<br>
 
 #  Layers_Router - Library 
-
 
 Framework para criação de Camadas de Rotas de Telas para FMX(Test) e VCL
 
@@ -8,11 +8,9 @@ O  Layers_Router - Library tem o objetivo de facilitar a chamada de telas sendo 
 
 ## Instalação
 
-
 Basta registrar no Library Path do seu Delphi o caminho da pasta SRC da Biblioteca
 
 ## Primeiros Passos - Tutorial
-
 
 Para utilizar o  Layers_Router - Library para criar suas rotas, você deve realizar a uses do Layers_Router.
 
@@ -31,66 +29,67 @@ Toda a construção das telas baseadas em rotas utilizar TLayout e TPanel para e
 A Implementação da Interface ILayers_RouterComponent requer a declaração de Três [3] métodos ( RendTheForm, RendTheFrame e UnRender ), o RendTheForm ou RendTheFrame é chamado sempre que uma rota aciona a tela, e o UnRender sempre que ela saí de exibição. 
 
 ```
-  RendTheForm: so é chamado quando sua Classe realmente for um Form da classe TForm;
-  RendTheFrame: so é chamado quando sua Classe realmente for um Frames da classe TFrame;
+>  RendTheForm: so é chamado quando sua Classe realmente for um Form da classe TForm;
+>  RendTheFrame: so é chamado quando sua Classe realmente for um Frames da classe TFrame;
 ```  
 
 #### Exemplo em VCL
 
 Crie um Novo Formulario na sua Aplicação, inclua nele um Panel alinhado AlClient e implemente os métodos como abaixo.
 
-Lembre-se esta tela é que vai ser renderizado na qual proximo tela Standards.
-
+Lembre-se esta tela é que vai ser renderizado na qual a tela for Principal.
 
 ```delphi
-unit Rendering_Canvas;
 
-interface
+  unit Rendering_Canvas;
 
-uses
-  System.SysUtils, 
-  System.Types, 
-  System.UITypes, 
-  System.Classes, 
-  System.Variants,
+  interface
 
-  // Layers_Router Library
-  Layers_Router.Interfaces;
+  uses
+    System.SysUtils, 
+    System.Types, 
+    System.UITypes, 
+    System.Classes, 
+    System.Variants,
 
-type
-  TRendering_Canvas = class(TForm, ILayers_RouterComponent)
-  private
-    { Private declarations }
-  public
-    { Public declarations }
-    function RendTheForm : TForm;
-    function RendTheFrame : TFrame;
-    procedure UnRender;
+    // Layers_Router Library
+    Layers_Router.Interfaces;
+
+  type
+    TRendering_Canvas = class(TForm, ILayers_RouterComponent)
+    private
+      { Private declarations }
+    public
+      { Public declarations }
+      function RendTheForm : TForm;
+      function RendTheFrame : TFrame;
+      procedure UnRender;
+    end;
+
+  var
+    Rendering_Canvas : TRendering_Canvas;
+
+  {$R *.dfm}
+
+  { TRendering_Canvas }
+
+  function TRendering_Canvas.RendTheForm: TForm;
+  begin
+    Result := Self; // Só da Result.Self, se a sua tela for um TForm;
   end;
 
-var
-  Rendering_Canvas : TRendering_Canvas;
+  function TRendering_Canvas.RendTheFrame: TFrame;
+  begin
+    Result := Self; // Só da Result.Self, se a sua tela for um TFrame;
+  end;
 
-{$R *.dfm}
+  procedure TRendering_Canvas.UnRender;
+  begin
 
-{ TRendering_Canvas }
+  end;
 
-function TRendering_Canvas.RendTheForm: TForm;
-begin
-  Result := Self; // Só da Result.Self, se a sua tela for um TForm;
-end;
+  end.
 
-function TRendering_Canvas.RendTheFrame: TFrame;
-begin
-  Result := Self; // Só da Result.Self, se a sua tela for um TFrame;
-end;
-
-procedure TRendering_Canvas.UnRender;
-begin
-
-end;
-
-end.
 ```
 
 Perceba que no método RendTheForm ou RendTheFrame nós definimos o Result como Self, isso é necessário pois ele precisa de um retorno TForm ou TFrame, será embedado sempre que a rota for acionada. 
@@ -105,82 +104,141 @@ Abaixo o Código de uma tela simples implementando a interface ILayers_RouterCom
 
 Crie um Novo Formulario na sua Aplicação, inclua nele um Layout alinhado AlClient e implemente os métodos como abaixo.
 
+Lembre-se esta tela é que vai ser renderizado na qual a tela for Principal.
 
 ```delphi
-unit Rendering_Canvas;
 
-interface
+  unit Rendering_Canvas;
 
-uses
-  System.SysUtils, 
-  System.Types, 
-  System.UITypes, 
-  System.Classes, 
-  System.Variants,
-  FMX.Types, 
-  FMX.Controls, 
-  FMX.Forms, 
-  FMX.Graphics, 
-  FMX.Dialogs,
-  Layers_Router.Interfaces;
+  interface
 
-type
-  TRendering_Canvas = class(TForm, ILayers_RouterComponent)
-    Layout1: TLayout;
-  private
-    { Private declarations }
-  public
-    { Public declarations }
-    function Render : TFMXObject;
-    procedure UnRender;
+  uses
+    System.SysUtils, 
+    System.Types, 
+    System.UITypes, 
+    System.Classes, 
+    System.Variants,
+    FMX.Types, 
+    FMX.Controls, 
+    FMX.Forms, 
+    FMX.Graphics, 
+    FMX.Dialogs,
+    Layers_Router.Interfaces;
+
+  type
+    TRendering_Canvas = class(TForm, ILayers_RouterComponent)
+      Layout1: TLayout;
+    private
+      { Private declarations }
+    public
+      { Public declarations }
+      function Render : TFMXObject;
+      procedure UnRender;
+    end;
+
+  var
+    Rendering_Canvas : TRendering_Canvas;
+
+  implementation
+
+  {$R *.fmx}
+
+  { TRendering_Canvas }
+
+  function TRendering_Canvas.Render: TFMXObject;
+  begin
+    Result := Layout1;
   end;
 
-var
-  Rendering_Canvas : TRendering_Canvas;
+  procedure TRendering_Canvas.UnRender;
+  begin
 
-implementation
+  end;
 
-{$R *.fmx}
+  end.
 
-{ TRendering_Canvas }
-
-function TRendering_Canvas.Render: TFMXObject;
-begin
-  Result := Layout1;
-end;
-
-procedure TRendering_Canvas.UnRender;
-begin
-
-end;
-
-end.
 ```
 
 Perceba que no método Render nós definimos como Result o Layout1, isso é necessário pois esse layout será embedado sempre que a rota for acionada.
 
 ## Registrando a Rota para a Tela
 
+<br>
 
 Agora que já temos uma tela pronta para ser registrada vamos ao processo que deixará a nossa tela pronta para ser acionada a qualquer momento.
 
-Para registrar uma rota é necessário declarar a Uses Layers_Router ela fornece acesso a todos os métodos da biblioteca e em muito dos casos será o único acoplamento necessário nas suas Views.
+Para registrar uma rota é necessário declarar a uses Layers_Router ela fornece acesso a todos os métodos da biblioteca e em muito dos casos será o único acoplamento necessário nas suas Views.
 
-Uma vez declarada basta acionar o método abaixo para declarar o form que criamos anteriormente como uma rota.
 
-No formPrincipal da sua Aplicação, dentro do método onCreate execute o método abaixo para registrar a Rota para o Form TPrimeiraTela
+```delphi
+>  uses Layers_Router;
+```    
+
+
+Uma vez declarada basta acionar o método abaixo para declarar o Form ou Frame que criamos anteriormente como uma rota.
+
+
+```delphi
+>  TLayers_Router.Switch.Router('Inicio', TStandards_Principal);
+```    
+
+
+Para facilitar mais a sua aplicação, vamos criar uma nova unit no caso nova classe para registrar todas as suas rotas, só seguir método abaixo.
+
 
 ```delphi
 
-procedure TformPrincipal.FormCreate(Sender: TObject);
-begin 
-    TRouter4D.Switch.Router('Inicio', TPrimeiraTela);
-end;
+  unit Routers;
+
+  interface
+
+  type
+    TRouters = class
+      private
+      public
+        constructor Create;
+        destructor Destroy; override;
+    end;
+
+  var
+    Router : TRouters;
+
+  implementation
+
+  { TRouter }
+
+  uses
+    Layers_Router,
+    
+
+  constructor TRouters.Create;
+  begin
+    TLayers_Router
+      .Switch
+        .Router('Menu', TFrameMenu);
+  end;
+
+  destructor TRouters.Destroy;
+  begin
+
+    inherited;
+  end;
+
+  initialization
+    Router := TRouters.Create;
+
+  finalization
+    Router.Free;
+    
+  end.
+
 ```
 
 Pronto já temos uma Rota criada, dessa forma os nossos forms não precisam mais conhecer a uses da nossa tela, basta acionar nosso sistema de rotas e pedir a criação da rota "Inicio" que a mesma será exibida no LayoutMain da aplicação.
 
 Você pode criar uma Unit Separada somente para Registrar as Rotas ou então chamar um metodo no onCreate do seu formulario principal para isso.
+
+
 
 ## Definindo o Render Principal
 
