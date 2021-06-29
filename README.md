@@ -1,17 +1,22 @@
+
 #  Layers_Router - Library 
+
+
 Framework para criação de Camadas de Rotas de Telas para FMX(Test) e VCL
 
 O  Layers_Router - Library tem o objetivo de facilitar a chamada de telas sendo TForm ou TFrame e embed de Layouts em aplicações FMX, e Panels em aplicações VCL, reduzindo o acoplamento das telas de dando mais dinâmismo e práticidade na construção de interfaces ricas em Delphi
 
 ## Instalação
 
+
 Basta registrar no Library Path do seu Delphi o caminho da pasta SRC da Biblioteca
 
 ## Primeiros Passos - Tutorial
 
+
 Para utilizar o  Layers_Router - Library para criar suas rotas, você deve realizar a uses do Layers_Router.
 
-#### Observação
+#### Observação:
 
 Dentro da pasta src contém o Layers_Router.inc, esse arquivo possui a diretiva de compilação para o Firemonkey, com essa diretiva comentada o Framework terá suporte a VCL, e ao descomentar você terá suporte ao FMX.
 
@@ -155,6 +160,7 @@ end.
 Perceba que no método Render nós definimos como Result o Layout1, isso é necessário pois esse layout será embedado sempre que a rota for acionada.
 
 ## Registrando a Rota para a Tela
+
 
 Agora que já temos uma tela pronta para ser registrada vamos ao processo que deixará a nossa tela pronta para ser acionada a qualquer momento.
 
