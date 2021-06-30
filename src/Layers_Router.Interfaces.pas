@@ -28,8 +28,8 @@ type
     {$IFDEF HAS_FMX}
     function Render : TFMXObject;
     {$ElSE}
-    function RendTheForm : TForm; overload;
-    function RendTheFrame : TFrame; overload;
+    function RendTheForm : TForm;
+    function RendTheFrame : TFrame;
     {$ENDIF}
     procedure UnRender;
   end;

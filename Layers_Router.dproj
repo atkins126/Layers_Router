@@ -76,16 +76,16 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="vcl.dcp"/>
-        <DCCReference Include="soaprtl.dcp"/>
-        <DCCReference Include="fmx.dcp"/>
-        <DCCReference Include="FireDAC.dcp"/>
-        <DCCReference Include="FireDACCommon.dcp"/>
-        <DCCReference Include="dbrtl.dcp"/>
-        <DCCReference Include="DbxCommonDriver.dcp"/>
-        <DCCReference Include="FireDACCommonDriver.dcp"/>
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="xmlrtl.dcp"/>
+        <DCCReference Include="fmx.dcp"/>
+        <DCCReference Include="soaprtl.dcp"/>
+        <DCCReference Include="dbrtl.dcp"/>
+        <DCCReference Include="DbxCommonDriver.dcp"/>
+        <DCCReference Include="FireDAC.dcp"/>
+        <DCCReference Include="FireDACCommonDriver.dcp"/>
+        <DCCReference Include="FireDACCommon.dcp"/>
+        <DCCReference Include="vcl.dcp"/>
         <DCCReference Include="src\JK.EventBus.Core.pas"/>
         <DCCReference Include="src\JK.EventBus.Subscribers.pas"/>
         <DCCReference Include="src\JK.ObjectsMappers.pas"/>

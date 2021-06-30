@@ -212,7 +212,6 @@ object fViewPageTemplate: TfViewPageTemplate
               ParentColor = True
               ParentFont = False
               TabOrder = 0
-              ExplicitTop = -2
               object lbSearch: TLabel
                 AlignWithMargins = True
                 Left = 0

@@ -24,7 +24,7 @@ uses
   // Framework Layers_Router
   Layers_Router,
   Layers_Router.Interfaces,
-  Layers_Router.Propersys;
+  Layers_Router.Propefrsys;
 
 type
   TfViewPageTemplate = class(TForm, ILayers_RouterComponent)
