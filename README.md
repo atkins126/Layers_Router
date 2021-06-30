@@ -4,11 +4,24 @@
 
 Framework para criação de Camadas de Rotas de Telas para FMX(Test) e VCL
 
-O  Layers_Router - Library tem o objetivo de facilitar a chamada de telas sendo TForm ou TFrame e embed de Layouts em aplicações FMX, e Panels em aplicações VCL, reduzindo o acoplamento das telas de dando mais dinâmismo e práticidade na construção de interfaces ricas em Delphi
+O  Layers_Router - Library tem o objetivo de facilitar a chamada de telas sendo TForm ou TFrame e embed de Layouts em aplicações FMX, e Panels em aplicações VCL, reduzindo o acoplamento das telas de dando mais dinâmismo e práticidade na construção de interfaces ricas em Delphi.
 
 ## Instalação
 
-Basta registrar no Library Path do seu Delphi o caminho da pasta SRC da Biblioteca
+Voce pode Implementar em duas formas.
+
+#### Instalação pelo o [**Boss**](https://github.com/HashLoad/boss) (Gerenciador de dependências para Delphi)
+
+```javascript
+>  boss install https://github.com/Kyuorhan/Layers_Router/releases 
+```
+Se você não possui Boss instalado ou não sabe como utilizar o Gerenciador, segue link abaixo.
+
+* Entrar no GitHub: [**https://github.com/HashLoad/boss**](https://github.com/HashLoad/boss)
+
+#### Instalação Manual, faz o download da Biblioteca e registrar no Library Path do seu Delphi o caminho da pasta SRC da Biblioteca
+
+ * Download [**Setup**](https://github.com/Kyuorhan/Layers_Router/releases);
 
 ## Primeiros Passos - Tutorial
 
