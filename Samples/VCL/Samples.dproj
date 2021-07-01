@@ -87,7 +87,6 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_Define>C:\My-Project\Delphi-Repportsyster\Frameworks\My-Interface Library\ILayers_Router\Source;$(DCC_Define)</DCC_Define>
-        <DCC_UnitSearchPath>C:\Users\User\Downloads\Nova pasta\Layers_Router\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -104,7 +103,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="src\View\Pages\Samples.View.Pages.Template.pas">
-            <Form>fViewPageTemplate</Form>
+            <Form>fPageTemplate</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\View\Samples.View.Main.pas">
@@ -116,6 +115,33 @@
             <Form>FrameMenu</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\..\src\JK.EventBus.Core.pas"/>
+        <DCCReference Include="..\..\src\JK.EventBus.Subscribers.pas"/>
+        <DCCReference Include="..\..\src\JK.ObjectsMappers.pas"/>
+        <DCCReference Include="..\..\src\JK.RTTIUtils.pas"/>
+        <DCCReference Include="..\..\src\JK.TypedList.pas"/>
+        <DCCReference Include="..\..\src\Layers_Router.Helper.pas"/>
+        <DCCReference Include="..\..\src\Layers_Router.Interfaces.pas"/>
+        <DCCReference Include="..\..\src\Layers_Router.Link.pas"/>
+        <DCCReference Include="..\..\src\Layers_Router.pas"/>
+        <DCCReference Include="..\..\src\Layers_Router.Propersys.pas"/>
+        <DCCReference Include="..\..\src\Layers_Router.Render.pas"/>
+        <DCCReference Include="..\..\src\Layers_Router.Sidebars.pas"/>
+        <DCCReference Include="..\..\src\Layers_Router.Story.pas"/>
+        <DCCReference Include="..\..\src\Layers_Router.Switch.pas"/>
+        <DCCReference Include="..\..\src\Layers_Router.Utils.pas"/>
+        <DCCReference Include="src\View\Pages\Samples.View.Pages.Standards_Principal.pas">
+            <Form>fPageStandards</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\View\Pages\Samples.View.Pages.Usuarios.pas">
+            <Form>fPageUsuario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\View\Pages\Samples.View.Pages.Cidades.pas">
+            <Form>fPageCidades</Form>
+            <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

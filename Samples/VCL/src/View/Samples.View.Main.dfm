@@ -38,87 +38,8 @@ object fMain: TfMain
       TabOrder = 0
       OnDblClick = FormDblClick
       OnMouseMove = FormMouseMove
-    end
-    object pnlLayout_Style: TPanel
-      Left = 0
-      Top = 0
-      Width = 1027
-      Height = 36
-      Align = alTop
-      BevelOuter = bvNone
-      Color = clWhite
-      Padding.Left = 2
-      Padding.Top = 2
-      Padding.Right = 2
-      Padding.Bottom = 2
-      ParentBackground = False
-      TabOrder = 1
-      OnDblClick = FormDblClick
-      OnMouseDown = FormMouseDown
-      OnMouseMove = FormMouseMove
-      object lbTitle: TLabel
-        Left = 2
-        Top = 2
-        Width = 1023
-        Height = 32
-        Align = alClient
-        Alignment = taCenter
-        Caption = 'Principal'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-        Layout = tlCenter
-        OnDblClick = FormDblClick
-        OnMouseDown = FormMouseDown
-        OnMouseMove = FormMouseMove
-        ExplicitWidth = 68
-        ExplicitHeight = 21
-      end
-      object pnlLayout_StyleBtn: TPanel
-        Left = 2
-        Top = 2
-        Width = 1023
-        Height = 32
-        Align = alClient
-        BevelOuter = bvNone
-        ParentColor = True
-        TabOrder = 0
-        OnDblClick = FormDblClick
-        OnMouseDown = FormMouseDown
-        OnMouseMove = FormMouseMove
-        object btnMinimized: TSpeedButton
-          Left = 921
-          Top = 0
-          Width = 34
-          Height = 32
-          Align = alRight
-          OnClick = Layout_State
-          ExplicitLeft = 1274
-        end
-        object btnMaximized: TSpeedButton
-          Left = 955
-          Top = 0
-          Width = 34
-          Height = 32
-          Align = alRight
-          OnClick = Layout_State
-          ExplicitLeft = 882
-          ExplicitTop = -4
-        end
-        object btnClose: TSpeedButton
-          Left = 989
-          Top = 0
-          Width = 34
-          Height = 32
-          Align = alRight
-          OnClick = Layout_State
-          ExplicitLeft = 1402
-          ExplicitTop = -4
-        end
-      end
+      ExplicitLeft = 14
+      ExplicitTop = 40
     end
     object splMenu: TSplitView
       Left = 0
@@ -140,7 +61,99 @@ object fMain: TfMain
         Height = 592
         Align = alClient
         BevelOuter = bvNone
+        Color = 4604222
+        ParentBackground = False
         TabOrder = 0
+        ExplicitWidth = 89
+      end
+    end
+    object pnlLayout_Style: TPanel
+      Left = 0
+      Top = 0
+      Width = 1027
+      Height = 36
+      Align = alTop
+      BevelOuter = bvNone
+      Color = clWhite
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = 11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      Padding.Left = 2
+      Padding.Top = 2
+      Padding.Right = 2
+      Padding.Bottom = 2
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 1
+      OnDblClick = FormDblClick
+      OnMouseDown = FormMouseDown
+      OnMouseMove = FormMouseMove
+      object lbTitle: TLabel
+        Left = 2
+        Top = 2
+        Width = 1023
+        Height = 32
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'Layers_Router - Library'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Layout = tlCenter
+        OnDblClick = FormDblClick
+        OnMouseDown = FormMouseDown
+        OnMouseMove = FormMouseMove
+        ExplicitWidth = 163
+        ExplicitHeight = 20
+      end
+      object pnlLayout_StyleBtn: TPanel
+        Left = 2
+        Top = 2
+        Width = 1023
+        Height = 32
+        Align = alClient
+        BevelOuter = bvNone
+        ParentColor = True
+        TabOrder = 0
+        OnDblClick = FormDblClick
+        OnMouseDown = FormMouseDown
+        OnMouseMove = FormMouseMove
+        ExplicitLeft = -14
+        ExplicitTop = 18
+        object btnMaximized: TSpeedButton
+          Left = 955
+          Top = 0
+          Width = 34
+          Height = 32
+          Align = alRight
+          OnClick = Layout_State
+          ExplicitLeft = 882
+          ExplicitTop = -4
+        end
+        object btnClose: TSpeedButton
+          Left = 989
+          Top = 0
+          Width = 34
+          Height = 32
+          Align = alRight
+          OnClick = Layout_State
+          ExplicitLeft = 1402
+          ExplicitTop = -4
+        end
+        object btnMinimized: TSpeedButton
+          Left = 921
+          Top = 0
+          Width = 34
+          Height = 32
+          Align = alRight
+          OnClick = Layout_State
+          ExplicitLeft = 1274
+        end
       end
     end
   end

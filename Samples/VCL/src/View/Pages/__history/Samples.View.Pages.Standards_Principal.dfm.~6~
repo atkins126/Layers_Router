@@ -1,0 +1,67 @@
+object fPageStandards: TfPageStandards
+  Left = 0
+  Top = 0
+  Align = alClient
+  BorderStyle = bsNone
+  Caption = 'Form1'
+  ClientHeight = 559
+  ClientWidth = 742
+  Color = 4209464
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnMouseMove = FormMouseMove
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnlMain: TPanel
+    Left = 0
+    Top = 0
+    Width = 742
+    Height = 559
+    Align = alClient
+    BevelOuter = bvNone
+    ParentBackground = False
+    ParentColor = True
+    TabOrder = 0
+    ExplicitLeft = -301
+    ExplicitTop = -108
+    ExplicitWidth = 1027
+    ExplicitHeight = 628
+    object pnlPrincipal: TPanel
+      Left = 0
+      Top = 0
+      Width = 742
+      Height = 559
+      Align = alClient
+      BevelOuter = bvNone
+      ParentBackground = False
+      ParentColor = True
+      TabOrder = 0
+      ExplicitLeft = 8
+      ExplicitTop = 36
+      ExplicitWidth = 1019
+      ExplicitHeight = 592
+      object Label1: TLabel
+        Left = 0
+        Top = 0
+        Width = 742
+        Height = 559
+        Align = alClient
+        Alignment = taCenter
+        Caption = 'Principal'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindow
+        Font.Height = -29
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Layout = tlCenter
+        ExplicitWidth = 120
+        ExplicitHeight = 40
+      end
+    end
+  end
+end

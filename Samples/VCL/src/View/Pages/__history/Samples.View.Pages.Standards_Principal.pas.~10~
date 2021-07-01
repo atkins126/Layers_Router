@@ -1,0 +1,59 @@
+unit Samples.View.Pages.Standards_Principal;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  Vcl.StdCtrls,
+
+  // Layers_Router Library
+  Layers_Router.Interfaces;
+
+type
+  TfPageStandards = class(TForm, ILayers_RouterComponent)
+    pnlMain: TPanel;
+    pnlPrincipal: TPanel;
+    Label1: TLabel;
+  private
+    { Private declarations }
+    function RendTheForm : TForm;
+    function RendTheFrame : TFrame;
+    procedure UnRender;
+  public
+    { Public declarations }
+  end;
+
+var
+  fPageStandards: TfPageStandards;
+
+implementation
+
+{$R *.dfm}
+
+{ TfPageStandards }
+
+function TfPageStandards.RendTheForm: TForm;
+begin
+  Result := Self;
+end;
+
+function TfPageStandards.RendTheFrame: TFrame;
+begin
+
+end;
+
+procedure TfPageStandards.UnRender;
+begin
+
+end;
+
+end.

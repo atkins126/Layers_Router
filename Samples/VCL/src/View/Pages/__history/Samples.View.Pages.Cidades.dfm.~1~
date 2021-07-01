@@ -1,0 +1,5 @@
+inherited fPageTemplate1: TfPageTemplate1
+  Caption = 'fPageTemplate1'
+  PixelsPerInch = 96
+  TextHeight = 13
+end

@@ -24,10 +24,10 @@ uses
   // Framework Layers_Router
   Layers_Router,
   Layers_Router.Interfaces,
-  Layers_Router.Propefrsys;
+  Layers_Router.Propersys;
 
 type
-  TfViewPageTemplate = class(TForm, ILayers_RouterComponent)
+  TfPageTemplate = class(TForm, ILayers_RouterComponent)
     imgList32: TImageList;
     pnlPrincipal: TPanel;
     pnlLayout_Style: TPanel;
@@ -63,23 +63,25 @@ type
     btnHistorico: TSpeedButton;
     pnlTop_BodyTitle: TPanel;
     lbTitle: TLabel;
-    Panel1: TPanel;
-    SpeedButton1: TSpeedButton;
+    pnlMain_BottomBody_DataSearch: TPanel;
+    btnBack: TSpeedButton;
     lbPagina: TLabel;
     btnNext: TSpeedButton;
     procedure btnBackClick(Sender: TObject);
     procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure btnNovoClick(Sender: TObject);
   private
     function RendTheForm : TForm;
     function RendTheFrame : TFrame;
     procedure UnRender;
+    procedure ChangeListForm;
   public
-    [Subscribe]
-    procedure Propertys(AValue: TPropersys);
+    [Subscribe_Attributes]
+    procedure Propersys(AValue: TPropersys);
   end;
 
 var
-  fViewPageTemplate: TfViewPageTemplate;
+  fPageTemplate: TfPageTemplate;
 
 implementation
 
@@ -90,34 +92,59 @@ uses
 
 { TfViewPageTemplate }
 
-procedure TfViewPageTemplate.btnBackClick(Sender: TObject);
+procedure TfPageTemplate.btnBackClick(Sender: TObject);
 begin
-  TLayers_Router.Link.&Throw('Start');
+  ChangeListForm;
+
+  pnlMain_Body_DataForm.Visible := False;
+//  TLayers_Router.Link
+//    .&Throw('Principal',
+//      TPropersys
+//        .Create
+//        .ProprsString('PRINCIPAL')
+//        .Key('TelaCidades')
+//    );
 end;
-procedure TfViewPageTemplate.FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+procedure TfPageTemplate.btnNovoClick(Sender: TObject);
+begin
+  ChangeListForm;
+end;
+
+procedure TfPageTemplate.FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
 begin
   if fMain.splMenu.Opened then
     fMain.TaskEnd_Menu(0);
 end;
 
-procedure TfViewPageTemplate.Propertys(AValue: TPropersys);
+procedure TfPageTemplate.Propersys(AValue: TPropersys);
 begin
   lbTitle.Caption := AValue.ProprsString;
 
   AValue.Free;
 end;
 
-function TfViewPageTemplate.RendTheForm: TForm;
+procedure TfPageTemplate.ChangeListForm;
+begin
+  pnlMain_Body_DataForm.Visible := not pnlMain_Body_DataForm.Visible;
+  pnlMain_Body_DataSearch.Visible := not pnlMain_Body_DataSearch.Visible;
+
+  if pnlMain_Body_DataForm.Visible = True then
+    pnlMain_Body_DataForm.Align := TAlign.alClient
+//  else
+//    pnlMain_Body_DataForm.Align := TAlign.alClient;
+end;
+
+function TfPageTemplate.RendTheForm: TForm;
 begin
   Result := Self;
 end;
 
-function TfViewPageTemplate.RendTheFrame: TFrame;
+function TfPageTemplate.RendTheFrame: TFrame;
 begin
 //
 end;
 
-procedure TfViewPageTemplate.UnRender;
+procedure TfPageTemplate.UnRender;
 begin
 
 end;

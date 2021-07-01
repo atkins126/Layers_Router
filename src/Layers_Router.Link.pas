@@ -1,9 +1,6 @@
 unit Layers_Router.Link;
-
 {$I Layers_Router.inc}
-
 interface
-
 uses
   Vcl.Forms,
   {$IFDEF HAS_FMX}
@@ -16,7 +13,6 @@ uses
   SysUtils,
   Layers_Router.Interfaces,
   Layers_Router.Propersys;
-
 type
   TLayers_RouterLink = class(TInterfacedObject, ILayers_RouterLink)
     private
@@ -30,40 +26,30 @@ type
     constructor Create;
     destructor Destroy; override;
     class function New : ILayers_RouterLink;
-
     {$IFDEF HAS_FMX}
-
     function Layer_Animation ( ALayer_Animation : TProc<TFMXObject> ) : ILayers_RouterLink;
     function &Throw ( APatch : String; AComponent : TFMXObject ) : ILayers_RouterLink; overload;
-
     {$ELSE}
-
     function Layer_Animation ( ALayer_Animation : TProc<TPanel> ) : ILayers_RouterLink;
     function &Throw ( APatch : String; AComponent : TPanel ) : ILayers_RouterLink; overload;
-
     {$ENDIF}
-
     function &Throw ( APatch : String) : ILayers_RouterLink; overload;
-    function &Throw ( APatch : String; APropertys : TPropersys; AKey : String = '') : ILayers_RouterLink; overload;
-    function &Throw ( APatch : String; AContainerTitle : String) : ILayers_RouterLink; overload;
+    function &Throw ( APatch : String; APropersys : TPropersys; AKey : String = '') : ILayers_RouterLink; overload;
+    function &Throw ( APatch : String; ANamedContainer : String) : ILayers_RouterLink; overload;
     function IndexLink ( APatch : String ) : ILayers_RouterLink;
   end;
-
+var
+  Layers_RouterLink : ILayers_RouterLink;
 implementation
-
 { TLayers_RouterLink }
-
 uses
   Layers_Router.Story;
-
 {$IFDEF HAS_FMX}
-
 function TLayers_RouterLink.Layer_Animation(ALayer_Animation: TProc<TFMXObject>): ILayers_RouterLink;
 begin
   Result := Self;
   FLayer_Animation := ALayer_Animation;
 end;
-
 function TLayers_RouterLink.&Throw( APatch : String; AComponent : TFMXObject ) : ILayers_RouterLink;
 begin
   Result := Self;
@@ -88,9 +74,9 @@ end;
 function TLayers_RouterLink.&Throw( APatch : String; AComponent : TPanel ) : ILayers_RouterLink;
 begin
   Result := Self;
-
   AComponent.RemoveObject;
   Layers_RouterStory.InstanteObject.UnRender;
+
   if FParent is TForm then
   begin
     AComponent
@@ -100,7 +86,6 @@ begin
           .RendTheForm
       );
   end;
-
   if FParent is TFrame then
   begin
     AComponent
@@ -114,93 +99,21 @@ end;
 
 {$ENDIF}
 
-function TLayers_RouterLink.&Throw(APatch, AContainerTitle: String): ILayers_RouterLink;
-var
-  {$IFDEF HAS_FMX}
-  LContainer : TFMXObject;
-  {$ELSE}
-  LContainer : TPanel;
-  {$ENDIF}
-begin
-  Result := Self;
-  Layers_RouterStory.InstanteObject.UnRender;
-  LContainer := Layers_RouterStory.GetStoryContainer(AContainerTitle);
-  {$IFDEF HAS_FMX}
-  LContainer.RemoveObject(0);
-  {$ELSE}
-  LContainer.RemoveObject;
-  {$ENDIF}
-
-  if FParent is TForm then
-  begin
-    LContainer
-      .AddObject(
-        Layers_RouterStory
-          .GetStory(APatch)
-          .RendTheForm
-      );
-  end;
-
-  if FParent is TFrame then
-  begin
-    LContainer
-      .AddObject(
-        Layers_RouterStory
-          .GetStory(APatch)
-          .RendTheFrame
-      );
-  end;
-
-    if Assigned(FLayer_Animation) then
-      FLayer_Animation(LContainer);
-end;
-
 constructor TLayers_RouterLink.Create;
 begin
-
 end;
 
 destructor TLayers_RouterLink.Destroy;
 begin
-
   inherited;
 end;
 
-function TLayers_RouterLink.IndexLink(APatch: String): ILayers_RouterLink;
+class function TLayers_RouterLink.New: ILayers_RouterLink;
 begin
-  Result := Self;
-  {$IFDEF HAS_FMX}
-  Layers_RouterStory.IndexRouter.RemoveObject(0);
-  {$ELSE}
-  Layers_RouterStory.IndexRouter.RemoveObject;
-  {$ENDIF}
-  Layers_RouterStory.InstanteObject.UnRender;
+  if not Assigned(Layers_RouterLink) then
+    Layers_RouterLink := Self.Create;
 
-  if FParent is TForm then
-  begin
-    Layers_RouterStory
-      .MainRouter
-        .AddObject(
-          Layers_RouterStory
-            .GetStory(APatch)
-            .RendTheForm
-        );
-  end;
-
-  if FParent is TFrame then
-  begin
-    Layers_RouterStory
-      .MainRouter
-        .AddObject(
-          Layers_RouterStory
-            .GetStory(APatch)
-            .RendTheFrame
-        );
-  end;
-
-
-  if Assigned(FLayer_Animation) then
-  FLayer_Animation(Layers_RouterStory.IndexRouter);
+  Result := Layers_RouterLink;
 end;
 
 function TLayers_RouterLink.&Throw(APatch: String) : ILayers_RouterLink;
@@ -223,7 +136,6 @@ begin
             .RendTheForm
         );
   end;
-
   if FParent is TFrame then
   begin
     Layers_RouterStory
@@ -234,12 +146,11 @@ begin
             .RendTheFrame
         );
   end;
-
   if Assigned(FLayer_Animation) then
     FLayer_Animation(Layers_RouterStory.MainRouter);
 end;
 
-function TLayers_RouterLink.&Throw(APatch: String; APropertys: TPropersys; AKey : String = '') : ILayers_RouterLink;
+function TLayers_RouterLink.&Throw(APatch: String; APropersys: TPropersys; AKey : String = '') : ILayers_RouterLink;
 begin
   Result := Self;
   {$IFDEF HAS_FMX}
@@ -249,7 +160,7 @@ begin
   {$ENDIF}
   Layers_RouterStory.InstanteObject.UnRender;
 
-  if FParent is TForm then
+//  if FParent is TForm then
   begin
     Layers_RouterStory
       .MainRouter
@@ -259,8 +170,7 @@ begin
             .RendTheForm
         );
   end;
-
-  if FParent is TFrame then
+//  if FParent is TFrame then
   begin
     Layers_RouterStory
     .MainRouter
@@ -274,13 +184,86 @@ begin
   if Assigned(FLayer_Animation) then
     FLayer_Animation(Layers_RouterStory.MainRouter);
 
-  if AKey <> '' then APropertys.Key(AKey);
-    GlobalEventBus.Post(APropertys);
+  if AKey <> '' then APropersys.Key(AKey);
+  GlobalEventBus.Post(APropersys);
 end;
 
-class function TLayers_RouterLink.New: ILayers_RouterLink;
+function TLayers_RouterLink.&Throw(APatch, ANamedContainer: String): ILayers_RouterLink;
+var
+  {$IFDEF HAS_FMX}
+  LContainer : TFMXObject;
+  {$ELSE}
+  LContainer : TPanel;
+  {$ENDIF}
 begin
-  Result := Self.Create;
+  Result := Self;
+  Layers_RouterStory.InstanteObject.UnRender;
+  LContainer := Layers_RouterStory.GetStoryContainer(ANamedContainer);
+  {$IFDEF HAS_FMX}
+  LContainer.RemoveObject(0);
+  {$ELSE}
+  LContainer.RemoveObject;
+  {$ENDIF}
+
+  if FParent is TForm then
+  begin
+    LContainer
+      .AddObject(
+        Layers_RouterStory
+          .GetStory(APatch)
+          .RendTheForm
+      );
+  end
+  else if FParent is TFrame then
+  begin
+    LContainer
+      .AddObject(
+        Layers_RouterStory
+          .GetStory(APatch)
+          .RendTheFrame
+      );
+  end;
+
+    if Assigned(FLayer_Animation) then
+      FLayer_Animation(LContainer);
 end;
+
+function TLayers_RouterLink.IndexLink(APatch: String): ILayers_RouterLink;
+begin
+  Result := Self;
+  {$IFDEF HAS_FMX}
+  Layers_RouterStory.IndexRouter.RemoveObject(0);
+  {$ELSE}
+  Layers_RouterStory.IndexRouter.RemoveObject;
+  {$ENDIF}
+  Layers_RouterStory.InstanteObject.UnRender;
+
+  if FParent is TForm then
+  begin
+    Layers_RouterStory
+      .IndexRouter
+        .AddObject(
+          Layers_RouterStory
+            .GetStory(APatch)
+            .RendTheForm
+        );
+  end;
+  if FParent is TFrame then
+  begin
+    Layers_RouterStory
+      .IndexRouter
+        .AddObject(
+          Layers_RouterStory
+            .GetStory(APatch)
+            .RendTheFrame
+        );
+  end;
+
+  if Assigned(FLayer_Animation) then
+  FLayer_Animation(Layers_RouterStory.IndexRouter);
+end;
+
+initialization
+  Layers_RouterLink := TLayers_RouterLink.New;
 
 end.

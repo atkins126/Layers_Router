@@ -1,9 +1,9 @@
-object fViewPageTemplate: TfViewPageTemplate
+object fPageTemplate: TfPageTemplate
   Left = 0
   Top = 0
   Align = alClient
   BorderStyle = bsNone
-  Caption = 'fViewPageTemplate'
+  Caption = 'fPageTemplate'
   ClientHeight = 620
   ClientWidth = 1024
   Color = clBtnFace
@@ -118,7 +118,7 @@ object fViewPageTemplate: TfViewPageTemplate
         Padding.Left = 48
         Padding.Top = 8
         Padding.Right = 48
-        Padding.Bottom = 8
+        Padding.Bottom = 24
         ParentBackground = False
         ParentColor = True
         TabOrder = 0
@@ -191,8 +191,9 @@ object fViewPageTemplate: TfViewPageTemplate
               Font.Style = [fsBold]
               Layout = blGlyphTop
               ParentFont = False
+              OnClick = btnNovoClick
               ExplicitLeft = -6
-              ExplicitTop = 6
+              ExplicitTop = -2
             end
             object pnlMain_TopBody_Search: TPanel
               Left = 632
@@ -271,7 +272,7 @@ object fViewPageTemplate: TfViewPageTemplate
           Left = 48
           Top = 108
           Width = 928
-          Height = 368
+          Height = 352
           Align = alClient
           BevelOuter = bvNone
           Padding.Top = 12
@@ -283,16 +284,17 @@ object fViewPageTemplate: TfViewPageTemplate
             Left = 312
             Top = 12
             Width = 616
-            Height = 356
-            Align = alClient
+            Height = 340
+            Align = alRight
             BevelOuter = bvNone
             Padding.Left = 12
             ParentBackground = False
             ParentColor = True
             TabOrder = 0
+            Visible = False
             object pnMain_BottomBody_DataForm: TPanel
               Left = 12
-              Top = 256
+              Top = 240
               Width = 604
               Height = 100
               Align = alBottom
@@ -365,21 +367,22 @@ object fViewPageTemplate: TfViewPageTemplate
               Left = 12
               Top = 0
               Width = 604
-              Height = 256
+              Height = 240
               Align = alClient
               BevelOuter = bvNone
               Color = 4143672
               Padding.Left = 50
               Padding.Right = 50
               TabOrder = 1
+              ExplicitHeight = 201
             end
           end
           object pnlMain_Body_DataSearch: TPanel
             Left = 0
             Top = 12
             Width = 312
-            Height = 356
-            Align = alLeft
+            Height = 340
+            Align = alClient
             BevelOuter = bvNone
             ParentColor = True
             TabOrder = 1
@@ -387,7 +390,7 @@ object fViewPageTemplate: TfViewPageTemplate
               Left = 0
               Top = 0
               Width = 312
-              Height = 315
+              Height = 272
               Align = alClient
               ParentColor = True
               TabOrder = 0
@@ -397,21 +400,25 @@ object fViewPageTemplate: TfViewPageTemplate
               TitleFont.Name = 'Tahoma'
               TitleFont.Style = []
             end
-            object Panel1: TPanel
+            object pnlMain_BottomBody_DataSearch: TPanel
               Left = 0
-              Top = 315
+              Top = 272
               Width = 312
-              Height = 41
+              Height = 68
               Align = alBottom
               BevelOuter = bvNone
+              Color = 4209464
+              Padding.Left = 8
+              Padding.Top = 8
+              Padding.Right = 8
+              Padding.Bottom = 8
               ParentBackground = False
-              ParentColor = True
               TabOrder = 1
-              object SpeedButton1: TSpeedButton
-                Left = 194
-                Top = 0
-                Width = 40
-                Height = 41
+              object btnBack: TSpeedButton
+                Left = 150
+                Top = 8
+                Width = 52
+                Height = 52
                 Align = alRight
                 Caption = #9664#9664
                 Flat = True
@@ -422,14 +429,14 @@ object fViewPageTemplate: TfViewPageTemplate
                 Font.Style = [fsBold]
                 ParentFont = False
                 Spacing = 0
-                ExplicitLeft = 112
+                ExplicitLeft = 158
                 ExplicitTop = 6
               end
               object lbPagina: TLabel
-                Left = 234
-                Top = 0
-                Width = 38
-                Height = 41
+                Left = 202
+                Top = 8
+                Width = 50
+                Height = 52
                 Align = alRight
                 Alignment = taCenter
                 AutoSize = False
@@ -441,15 +448,14 @@ object fViewPageTemplate: TfViewPageTemplate
                 Font.Style = [fsBold]
                 ParentFont = False
                 Layout = tlCenter
-                ExplicitLeft = 511
-                ExplicitTop = 8
-                ExplicitHeight = 38
+                ExplicitLeft = 208
+                ExplicitTop = 0
               end
               object btnNext: TSpeedButton
-                Left = 272
-                Top = 0
-                Width = 40
-                Height = 41
+                Left = 252
+                Top = 8
+                Width = 52
+                Height = 52
                 Align = alRight
                 Caption = #9654#9654
                 Flat = True
@@ -459,8 +465,8 @@ object fViewPageTemplate: TfViewPageTemplate
                 Font.Name = 'Segoe UI'
                 Font.Style = [fsBold]
                 ParentFont = False
-                ExplicitLeft = 238
-                ExplicitTop = 6
+                ExplicitLeft = 259
+                ExplicitTop = 0
               end
             end
           end
@@ -565,20 +571,20 @@ object fViewPageTemplate: TfViewPageTemplate
           object lbTitle: TLabel
             Left = 0
             Top = 0
-            Width = 49
+            Width = 59
             Height = 100
             Align = alLeft
             Caption = 'TITLES'
             Color = 4209464
             Font.Charset = DEFAULT_CHARSET
             Font.Color = clBtnFace
-            Font.Height = -16
+            Font.Height = -19
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentColor = False
             ParentFont = False
             Layout = tlCenter
-            ExplicitHeight = 21
+            ExplicitHeight = 25
           end
         end
       end

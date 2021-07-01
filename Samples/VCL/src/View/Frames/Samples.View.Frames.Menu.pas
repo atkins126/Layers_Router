@@ -16,22 +16,26 @@ uses
   Vcl.Imaging.pngimage,
   Vcl.ExtCtrls,
 
+  // Layers_Rotuer - Library
   Layers_Router,
-  Layers_Router.Interfaces;
+  Layers_Router.Interfaces,
+  Layers_Router.Propersys;
 
 type
   TFrameMenu = class(TFrame, ILayers_RouterComponent)
     pnlMenu: TPanel;
     imgTools: TImage;
-    imgSearch: TImage;
+    imgUsuario: TImage;
     imgReport: TImage;
-    imgGeneral: TImage;
-    btnGeneral: TSpeedButton;
+    imgCidades: TImage;
+    btnCidades: TSpeedButton;
     btnReport: TSpeedButton;
-    btnSearch: TSpeedButton;
+    btnUsuario: TSpeedButton;
     btnTools: TSpeedButton;
     procedure FrameMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
-    procedure btnGeneralClick(Sender: TObject);
+    procedure btnCidadesClick(Sender: TObject);
+    procedure btnUsuarioClick(Sender: TObject);
+    procedure btnToolsClick(Sender: TObject);
   private
     { Private declarations }
     function RendTheForm : TForm;
@@ -50,9 +54,26 @@ uses
 
 { TFrameMenu }
 
-procedure TFrameMenu.btnGeneralClick(Sender: TObject);
+procedure TFrameMenu.btnCidadesClick(Sender: TObject);
 begin
-  TLayers_Router.Link.&Throw('Template');
+  TLayers_Router.Link
+    .&Throw('Cidade',
+      TPropersys
+        .Create
+        .ProprsString('Cadastro de Cidades')
+        .Key('TelaCidades')
+    );
+
+end;
+
+procedure TFrameMenu.btnToolsClick(Sender: TObject);
+begin
+  TLayers_Router.Link.&Throw('Menu');
+end;
+
+procedure TFrameMenu.btnUsuarioClick(Sender: TObject);
+begin
+  TLayers_Router.Link.&Throw('Usuario');
 end;
 
 procedure TFrameMenu.FrameMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);

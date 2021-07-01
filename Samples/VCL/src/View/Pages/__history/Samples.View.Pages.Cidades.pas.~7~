@@ -1,0 +1,44 @@
+unit Samples.View.Pages.Cidades;
+
+interface
+
+uses
+  Data.DB,
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.ImageList,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ImgList,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.StdCtrls,
+  Vcl.Buttons,
+  Vcl.ExtCtrls,
+
+  Samples.View.Pages.Template,
+  // Layers_Router - Library
+  Layers_Router.Interfaces;
+
+
+type
+  TfPageCidades = class(TfPageTemplate, ILayers_RouterComponent)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fPageCidades: TfPageCidades;
+
+implementation
+
+{$R *.dfm}
+
+end.

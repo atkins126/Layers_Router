@@ -1,0 +1,25 @@
+unit Samples.View.Pages.Cidades;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Samples.View.Pages.Template, Data.DB, System.ImageList, Vcl.ImgList, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+
+type
+  TfPageCidades = class(TfPageTemplate)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fPageCidades: TfPageCidades;
+
+implementation
+
+{$R *.dfm}
+
+end.
